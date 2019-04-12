@@ -2,6 +2,7 @@
 #include "Plant.h"
 #include "Bush.h"
 #include "Tree.h"
+#include "Flower.h"
 
 //Элемент контейнера кольцевой двусвязанный список
 template <typename Data>
@@ -85,6 +86,11 @@ void RingList<DataRL>::In(std::ifstream& infile)
 		if (type == 2)
 		{
 			object = new Bush;
+		}
+
+		if (type == 3)
+		{
+			object = new Flower;
 		}
 		object->In(infile);
 		this->PushBack(object);

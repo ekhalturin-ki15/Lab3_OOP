@@ -152,11 +152,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bush.cpp" />
+    <ClCompile Include="Flower.cpp" />
     <ClCompile Include="Lab3_OOP.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bush.h" />
+    <ClInclude Include="Flower.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="RingList.h" />
     <ClInclude Include="Tree.h" />
