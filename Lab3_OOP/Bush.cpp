@@ -15,7 +15,11 @@ void Bush::Out(std::ofstream& outfile)
 		outfile << "месяц цветения считался некорректно";
 	}
 
-	outfile << ", Его название: " << name << "\n";
+	outfile << ", Его название: " << name;
+
+	OutSuffix(outfile);
+
+	outfile << std::endl;
 
 }
 
@@ -23,6 +27,6 @@ void Bush::Out(std::ofstream& outfile)
 void Bush::In(std::ifstream& infile)
 {
 	std::string s;
-	infile >> this->month >> this->name;
+	infile >> this->month >> this->name >> this->WIG;
 
 }

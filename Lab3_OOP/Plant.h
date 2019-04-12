@@ -5,6 +5,7 @@
 #include <fstream>
 
 //Родительский класс наследования
+const std::vector<std::string> whereItGrows = { "тундре", "пустыни", "степи", "арктике" };
 
 class Plant
 {
@@ -17,4 +18,6 @@ public:
 
 protected:
 	std::string name;
+	int WIG;
+	void OutSuffix(std::ofstream& outfile);
 };
