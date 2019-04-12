@@ -40,10 +40,14 @@ int main(int amount, char* param[])
 
 	std::cout << "Данные выведенны в файл" << std::endl << "количество объектов: " << container.WatAmount() << std::endl;
 
-	container.Clear();
-	container.Out(outfile);
+	std::cout << "Фильтрованный вывод" << std::endl;
+	outfile << "---------------------\n";
+	container.Out(outfile, true);
 
 	std::cout << "Контейнер очищен" << std::endl << "количество объектов: " << container.WatAmount() << std::endl;
+	
+	container.Clear();
+	container.Out(outfile);
 
 	std::cout << "Финиш" << std::endl;
 }

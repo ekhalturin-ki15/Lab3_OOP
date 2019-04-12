@@ -13,4 +13,5 @@ void Tree::Out(std::ofstream& outfile)
 void Tree::In(std::ifstream& infile)
 {
 	infile >> this->year >> this->name;
+	this->key = Type::tree;
 }

@@ -33,7 +33,7 @@ public:
 
 	void In(std::ifstream& infile);
 
-	void Out(std::ofstream& outfile);
+	void Out(std::ofstream& outfile, bool filter = false);
 
 	int WatAmount();
 
@@ -56,12 +56,13 @@ private:
 
 
 template <typename  DataRL>
-void RingList<DataRL>::Out(std::ofstream& outfile)
+void RingList<DataRL>::Out(std::ofstream& outfile, bool filter)
 {
 	ElementRL<Plant*>* it = this->begin();
 	for (int i = 0; i < this->amountEl; i++)
 	{
-		it->data->Out(outfile);
+		if ((it->data->key == Type::tree) || (!filter))
+			it->data->Out(outfile);
 		it = it->next;
 	}
 }
