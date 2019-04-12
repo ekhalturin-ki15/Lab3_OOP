@@ -17,4 +17,6 @@ public:
 
 protected:
 	std::string name;
+	void OutPref(std::ofstream& outfile);
+	int AmountConsonant();
 };

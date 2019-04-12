@@ -3,7 +3,7 @@
 void Tree::Out(std::ofstream& outfile)
 {
 	outfile << "Это дерево, ";
-
+	OutPref(outfile);
 	outfile << "ему " << year << " лет, ";
 
 	outfile << "Его название: " << name << "\n";
