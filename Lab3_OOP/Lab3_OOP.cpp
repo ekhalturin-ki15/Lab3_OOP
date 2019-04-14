@@ -40,6 +40,11 @@ int main(int amount, char* param[])
 
 	std::cout << "Данные выведенны в файл" << std::endl << "количество объектов: " << container.WatAmount() << std::endl;
 
+	outfile << "---------------" << std::endl;
+
+	std::cout << "Отсортировали" << std::endl;
+	container.Sort();
+
 	std::cout << "Фильтрованный вывод" << std::endl;
 	outfile << "---------------------\n";
 	container.Out(outfile, true);

@@ -4,7 +4,7 @@ void Bush::Out(std::ofstream& outfile)
 {
 
 	outfile << "Это кустарник, ";
-
+	OutPref(outfile);
 	if (0 < month && month <= 12)
 	{
 		outfile << "месяц цветения - " << watIsMonth[month - 1];

@@ -2,6 +2,7 @@
 #include "Plant.h"
 #include "Bush.h"
 #include "Tree.h"
+using namespace std;
 
 //Элемент контейнера кольцевой двусвязанный список
 template <typename Data>
@@ -37,7 +38,9 @@ public:
 
 	int WatAmount();
 
-
+	//Опять не по канонам std, ну да ладно, стерплю
+	void Sort();
+	
 
 private:
 
@@ -45,6 +48,8 @@ private:
 	ElementRL<DataRL>* end;
 	ElementRL<DataRL>* now; // Для постепенного вывода 
 	int amountEl;
+
+	void QSort(vector<ElementRL<DataRL>*>& mass, int l, int r);
 
 };
 
@@ -163,4 +168,48 @@ template <typename  DataRL>
 int RingList<DataRL>::WatAmount()
 {
 	return this->amountEl;
+}
+
+
+
+template <typename  DataRL>
+void RingList<DataRL>::Sort()
+{
+
+	vector<ElementRL<DataRL>*> mass;
+	ElementRL<DataRL>* it = this->begin();
+	for (int i = 0; i < this->WatAmount(); i++)
+	{
+		mass.push_back(it);
+		it = it->next;
+	}
+
+	this->QSort(mass, 0, mass.size() - 1);
+
+
+}
+
+template <typename  DataRL>
+void RingList<DataRL>::QSort(vector<ElementRL<DataRL>*> & mass, int l, int r)
+{
+	int i = l, j = r;
+	ElementRL<DataRL>* p = mass[(l + r) / 2];
+	while (true)
+	{
+		while (p->data->cmp(mass[i]->data)) i++;
+
+		while (mass[j]->data->cmp(p->data)) j--;
+
+		if (i <= j)
+		{
+			std::swap(mass[i]->data, mass[j]->data);
+
+			i++;
+			j--;
+		}
+		if (i > j) break;
+	}
+
+	if (l < j) this->QSort(mass, l, j); //then QuickSort(l, j);
+	if (i < r) this->QSort(mass, i, r); //then QuickSort(i, r);
 }

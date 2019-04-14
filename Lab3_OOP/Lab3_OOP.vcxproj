@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="Bush.cpp" />
     <ClCompile Include="Lab3_OOP.cpp" />
+    <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
