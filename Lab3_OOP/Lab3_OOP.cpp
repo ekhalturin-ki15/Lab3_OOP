@@ -44,7 +44,6 @@ int main(int amount, char* param[])
 
 	std::cout << "Отсортировали" << std::endl;
 	container.Sort();
-	container.Out(outfile);
 
 	std::cout << "Фильтрованный вывод" << std::endl;
 	outfile << "---------------------\n";
