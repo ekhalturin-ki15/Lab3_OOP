@@ -7,7 +7,7 @@
 //Родительский класс наследования
 const std::vector<std::string> whereItGrows = { "тундре", "пустыни", "степи", "арктике" };
 
-enum Type { tree, bush };
+enum Type { tree, bush, flower };
 
 class Plant
 {

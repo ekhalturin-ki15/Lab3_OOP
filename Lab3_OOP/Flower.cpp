@@ -5,6 +5,7 @@ void Flower::Out(std::ofstream& outfile)
 {
 
 	outfile << "Это цветок, ";
+	OutPref(outfile);
 
 	if (-1 < type && type < watIsType.size())
 	{
@@ -16,7 +17,11 @@ void Flower::Out(std::ofstream& outfile)
 		outfile << "тип считался некорректно";
 	}
 
-	outfile << ", Его название: " << name << "\n";
+	outfile << ", Его название: " << name;
+
+	OutSuffix(outfile);
+
+	outfile << std::endl;
 
 }
 
@@ -24,6 +29,7 @@ void Flower::Out(std::ofstream& outfile)
 void Flower::In(std::ifstream& infile)
 {
 	std::string s;
-	infile >> this->type >> this->name;
+	infile >> this->type >> this->name >> this->WIG;
+	this->key = Type::flower;
 
 }
