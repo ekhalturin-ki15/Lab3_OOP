@@ -199,6 +199,7 @@ void RingList<DataRL>::Sort()
 template <typename  DataRL>
 void RingList<DataRL>::QSort(vector<ElementRL<DataRL>*> & mass, int l, int r)
 {
+	if (l >= r) return;
 	int i = l, j = r;
 	ElementRL<DataRL> p = *mass[(l + r) / 2];
 	while (true)
@@ -217,6 +218,6 @@ void RingList<DataRL>::QSort(vector<ElementRL<DataRL>*> & mass, int l, int r)
 		if (i > j) break;
 	}
 
-	if (l < j) this->QSort(mass, l, j); //then QuickSort(l, j);
-	if (i < r) this->QSort(mass, i, r); //then QuickSort(i, r);
+	this->QSort(mass, l, j); //then QuickSort(l, j);
+	this->QSort(mass, i, r); //then QuickSort(i, r);
 }
