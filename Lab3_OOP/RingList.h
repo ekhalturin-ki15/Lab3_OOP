@@ -23,7 +23,7 @@ class RingList
 public:
 
 	RingList();
-
+	~RingList();
 
 	// Положить в конец
 	void PushBack(DataRL flower);
@@ -108,6 +108,12 @@ RingList<DataRL>::RingList()
 {
 	amountEl = 0;
 	start = 0;
+}
+
+template <typename  DataRL>
+RingList<DataRL>::~RingList()
+{
+	Clear();
 }
 
 template <typename  DataRL>
