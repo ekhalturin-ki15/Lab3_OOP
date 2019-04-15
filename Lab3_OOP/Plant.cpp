@@ -17,7 +17,7 @@ void Plant::OutPref(std::ofstream& outfile)
 	outfile << "Количество согласных =" << AmountConsonant() << " ; ";
 }
 
-bool Plant::cmp(Plant* other)
+bool Plant::Cmp(Plant* other)
 {
 	int l = this->AmountConsonant();
 	int r = other->AmountConsonant();

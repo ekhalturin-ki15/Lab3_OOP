@@ -28,6 +28,4 @@ void Bush::In(std::ifstream& infile)
 {
 	std::string s;
 	infile >> this->month >> this->name >> this->WIG;
-	this->key = Type::bush;
-
 }

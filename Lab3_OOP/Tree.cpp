@@ -29,5 +29,4 @@ void Tree::OutFilter(std::ofstream& outfile)
 void Tree::In(std::ifstream& infile)
 {
 	infile >> this->year >> this->name >> this->WIG;
-	this->key = Type::tree;
 }

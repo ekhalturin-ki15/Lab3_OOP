@@ -30,6 +30,4 @@ void Flower::In(std::ifstream& infile)
 {
 	std::string s;
 	infile >> this->type >> this->name >> this->WIG;
-	this->key = Type::flower;
-
 }

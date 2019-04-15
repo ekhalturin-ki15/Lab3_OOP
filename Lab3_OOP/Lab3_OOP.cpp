@@ -6,7 +6,7 @@
 #include "Tree.h"
 #include "Bush.h"
 
-const int StandartInpAtr = 3;
+const int STAND_AMOUNT = 3;
 
 int main(int amount, char* param[])
 {
@@ -16,7 +16,7 @@ int main(int amount, char* param[])
 	std::ifstream infile;
 	std::ofstream outfile;
 
-	if (amount == StandartInpAtr)
+	if (amount == STAND_AMOUNT)
 	{
 		infile.open(param[1]);
 		outfile.open(param[2]);

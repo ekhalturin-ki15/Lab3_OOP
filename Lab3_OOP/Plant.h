@@ -7,7 +7,9 @@
 //Родительский класс наследования
 const std::vector<std::string> whereItGrows = { "тундре", "пустыни", "степи", "арктике" };
 
-enum Type { tree, bush, flower };
+const int TREE = 1;
+const int BUSH = 2;
+const int FLOW = 3;
 
 class Plant
 {
@@ -16,9 +18,7 @@ public:
 	virtual void In(std::ifstream& infile) = 0;
 	virtual void Out(std::ofstream& outfile) = 0;
 	virtual void OutFilter(std::ofstream& outfile) {};
-
-	bool cmp(Plant* other);
-	Type key;
+	bool Cmp(Plant* other);
 
 
 protected:

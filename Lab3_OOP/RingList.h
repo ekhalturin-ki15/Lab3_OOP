@@ -46,8 +46,6 @@ public:
 private:
 
 	ElementRL<DataRL>* start;
-	ElementRL<DataRL>* end;
-	ElementRL<DataRL>* now; // Для постепенного вывода 
 	int amountEl;
 
 	void QSort(vector<ElementRL<DataRL>*>& mass, int l, int r);
@@ -86,17 +84,17 @@ void RingList<DataRL>::In(std::ifstream& infile)
 		infile >> type;
 		if (!type) break;
 		Plant* object = 0;
-		if (type == 1)
+		if (type == TREE)
 		{
 			object = new Tree;
 		}
 
-		if (type == 2)
+		if (type == BUSH)
 		{
 			object = new Bush;
 		}
 
-		if (type == 3)
+		if (type == FLOW)
 		{
 			object = new Flower;
 		}
@@ -110,8 +108,6 @@ RingList<DataRL>::RingList()
 {
 	amountEl = 0;
 	start = 0;
-	end = 0;
-	now = 0;
 }
 
 template <typename  DataRL>
@@ -132,12 +128,12 @@ void RingList<DataRL>::PushBack(DataRL plant)
 
 	if (start)
 	{
-		end->next = newEl;
-		newEl->prev = end;
+		start->prev->next = newEl;
+		newEl->prev = start->prev;
 		newEl->next = start;
 		newEl->data = plant;
-		end = newEl;
-		start->prev = end;
+		start->prev = newEl;
+		start->prev = start->prev;
 	}
 	else
 	{
@@ -145,7 +141,6 @@ void RingList<DataRL>::PushBack(DataRL plant)
 		start->next = start;
 		start->prev = start;
 		start->data = plant;
-		end = start;
 	}
 	this->amountEl++;
 }
@@ -168,8 +163,6 @@ void RingList<DataRL>::Clear()
 
 	amountEl = 0;
 	start = 0;
-	end = 0;
-	now = 0;
 }
 
 template <typename  DataRL>
@@ -201,12 +194,12 @@ template <typename  DataRL>
 void RingList<DataRL>::QSort(vector<ElementRL<DataRL>*> & mass, int l, int r)
 {
 	int i = l, j = r;
-	ElementRL<DataRL>* p = mass[(l + r) / 2];
+	ElementRL<DataRL> p = *mass[(l + r) / 2];
 	while (true)
 	{
-		while (p->data->cmp(mass[i]->data)) i++;
+		while (p.data->Cmp(mass[i]->data)) i++;
 
-		while (mass[j]->data->cmp(p->data)) j--;
+		while (mass[j]->data->Cmp(p.data)) j--;
 
 		if (i <= j)
 		{
