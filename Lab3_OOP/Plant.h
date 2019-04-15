@@ -15,6 +15,7 @@ public:
 
 	virtual void In(std::ifstream& infile) = 0;
 	virtual void Out(std::ofstream& outfile) = 0;
+	virtual void OutFilter(std::ofstream& outfile) {};
 
 	bool cmp(Plant* other);
 	Type key;

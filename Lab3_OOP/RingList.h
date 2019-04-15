@@ -67,7 +67,9 @@ void RingList<DataRL>::Out(std::ofstream& outfile, bool filter)
 	ElementRL<Plant*>* it = this->begin();
 	for (int i = 0; i < this->amountEl; i++)
 	{
-		if ((it->data->key == Type::tree) || (!filter))
+		if (filter)
+			it->data->OutFilter(outfile);
+		else
 			it->data->Out(outfile);
 		it = it->next;
 	}
