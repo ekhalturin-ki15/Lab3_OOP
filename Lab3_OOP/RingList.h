@@ -3,6 +3,7 @@
 #include "Bush.h"
 #include "Tree.h"
 #include "Flower.h"
+#include <memory>
 using namespace std;
 
 //Элемент контейнера кольцевой двусвязанный список
@@ -11,8 +12,8 @@ class ElementRL
 {
 public:
 	Data data;
-	ElementRL<Data>* next;
-	ElementRL<Data>* prev;
+	shared_ptr<ElementRL<Data>> next;
+	shared_ptr<ElementRL<Data>> prev;
 
 };
 
@@ -23,14 +24,13 @@ class RingList
 public:
 
 	RingList();
-	~RingList();
 
 	// Положить в конец
 	void PushBack(DataRL flower);
 
-	ElementRL<DataRL>* begin();
+	shared_ptr<ElementRL<DataRL>> begin();
 
-	////Удалить
+	////Удалить (теперь не настолько выжно, используем умные указатели)
 	void Clear();
 
 	void In(std::ifstream& infile);
@@ -42,13 +42,13 @@ public:
 	//Опять не по канонам std, ну да ладно, стерплю
 	void Sort();
 	
-
+#ifndef UNITTEST
 private:
+#endif
 
-	ElementRL<DataRL>* start;
+	shared_ptr<ElementRL<DataRL>> start;
 	int amountEl;
-
-	void QSort(vector<ElementRL<DataRL>*>& mass, int l, int r);
+	void QSort(vector<shared_ptr<ElementRL<DataRL>>>& mass, int l, int r);
 
 };
 
@@ -56,13 +56,10 @@ private:
 
 //При использовании шаблонов, реализацию нельзя разделять, так как она требуется на этапе компановки
 
-
-
-
 template <typename  DataRL>
 void RingList<DataRL>::Out(std::ofstream& outfile, bool filter)
 {
-	ElementRL<Plant*>* it = this->begin();
+	shared_ptr<ElementRL<DataRL>> it = this->begin();
 	for (int i = 0; i < this->amountEl; i++)
 	{
 		if (filter)
@@ -77,28 +74,35 @@ template <typename  DataRL>
 void RingList<DataRL>::In(std::ifstream& infile)
 {
 	int type;
-
-	while (true)
+	string line;
+	stringstream stream;
+	
+	while (getline(infile, line))
 	{
-		type = 0;
-		infile >> type;
-		if (!type) break;
-		Plant* object = 0;
+		stream.clear();
+		stream.str(line);
+		stream >> type;
+		shared_ptr<Plant> object;
+		//Plant* object = 0;
+
 		if (type == TREE)
 		{
-			object = new Tree;
+			object = make_shared<Tree>();
+			//object = new Tree;
 		}
 
 		if (type == BUSH)
 		{
-			object = new Bush;
+			object = make_shared<Bush>();
+			//object = new Bush;
 		}
 
 		if (type == FLOW)
 		{
-			object = new Flower;
+			object = make_shared<Flower>();
+			//object = new Flower;
 		}
-		object->In(infile);
+		object->In(stream);
 		this->PushBack(object);
 	}
 }
@@ -111,13 +115,7 @@ RingList<DataRL>::RingList()
 }
 
 template <typename  DataRL>
-RingList<DataRL>::~RingList()
-{
-	Clear();
-}
-
-template <typename  DataRL>
-ElementRL<DataRL>* RingList<DataRL>::begin()
+shared_ptr<ElementRL<DataRL>> RingList<DataRL>::begin()
 {
 	return start;
 }
@@ -128,8 +126,8 @@ void RingList<DataRL>::PushBack(DataRL plant)
 {
 
 
-	ElementRL<DataRL>* newEl;
-	newEl = new ElementRL<DataRL>;
+	shared_ptr<ElementRL<DataRL>> newEl;
+	newEl = make_shared<ElementRL<DataRL>>();
 
 
 	if (start)
@@ -157,16 +155,6 @@ void RingList<DataRL>::PushBack(DataRL plant)
 template <typename  DataRL>
 void RingList<DataRL>::Clear()
 {
-	ElementRL<Plant*>* it = this->begin();
-	ElementRL<Plant*>* nextit = 0;
-	if (it != 0) nextit = it->next;
-	for (int i = 0; i < this->amountEl; i++)
-	{
-		delete it;
-		it = nextit;
-		nextit = nextit->next;
-	}
-
 	amountEl = 0;
 	start = 0;
 }
@@ -183,8 +171,8 @@ template <typename  DataRL>
 void RingList<DataRL>::Sort()
 {
 
-	vector<ElementRL<DataRL>*> mass;
-	ElementRL<DataRL>* it = this->begin();
+	vector<shared_ptr<ElementRL<DataRL>>> mass;
+	shared_ptr<ElementRL<DataRL>> it = this->begin();
 	for (int i = 0; i < this->WatAmount(); i++)
 	{
 		mass.push_back(it);
@@ -197,7 +185,7 @@ void RingList<DataRL>::Sort()
 }
 
 template <typename  DataRL>
-void RingList<DataRL>::QSort(vector<ElementRL<DataRL>*> & mass, int l, int r)
+void RingList<DataRL>::QSort(vector<shared_ptr<ElementRL<DataRL>>>& mass, int l, int r)
 {
 	if (l >= r) return;
 	int i = l, j = r;

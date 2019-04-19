@@ -15,44 +15,41 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="UnitTest_ForProc.cpp">
+    <ClCompile Include="UnitTest_ForRingList.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\Lab3_Proc\Bush.cpp">
+    <ClCompile Include="..\Lab3_OOP\Bush.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\Lab3_Proc\Flower.cpp">
+    <ClCompile Include="..\Lab3_OOP\Flower.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\Lab3_Proc\Plant.cpp">
+    <ClCompile Include="..\Lab3_OOP\Plant.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\Lab3_Proc\Tree.cpp">
+    <ClCompile Include="..\Lab3_OOP\Tree.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Lab3_Proc\Bush.h">
+    <ClInclude Include="..\Lab3_OOP\Bush.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\Lab3_Proc\Flower.h">
+    <ClInclude Include="..\Lab3_OOP\Flower.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\Lab3_Proc\Plant.h">
+    <ClInclude Include="..\Lab3_OOP\Plant.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\Lab3_Proc\RingList.h">
+    <ClInclude Include="..\Lab3_OOP\RingList.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\Lab3_Proc\Tree.h">
+    <ClInclude Include="..\Lab3_OOP\Tree.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Debug\input test.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-    <Text Include="..\Debug\output test.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
   </ItemGroup>

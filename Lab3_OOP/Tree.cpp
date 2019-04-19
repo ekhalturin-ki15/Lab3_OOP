@@ -26,7 +26,7 @@ void Tree::OutFilter(std::ofstream& outfile)
 	outfile << std::endl;
 }
 
-void Tree::In(std::ifstream& infile)
+void Tree::In(std::stringstream& stream)
 {
-	infile >> this->year >> this->name >> this->WIG;
+	stream >> this->year >> this->name >> this->WIG;
 }

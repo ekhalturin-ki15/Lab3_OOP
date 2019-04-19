@@ -3,9 +3,11 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <sstream>
+using namespace std;
 
 //Родительский класс наследования
-const std::vector<std::string> whereItGrows = { "тундре", "пустыни", "степи", "арктике" };
+const vector<string> whereItGrows = { "тундре", "пустыни", "степи", "арктике" };
 
 const int TREE = 1;
 const int BUSH = 2;
@@ -15,16 +17,18 @@ class Plant
 {
 public:
 
-	virtual void In(std::ifstream& infile) = 0;
-	virtual void Out(std::ofstream& outfile) = 0;
-	virtual void OutFilter(std::ofstream& outfile) {};
-	bool Cmp(Plant* other);
-
-
+	virtual void In(stringstream& stream) = 0;
+	virtual void Out(ofstream& outfile) = 0;
+	virtual void OutFilter(ofstream& outfile) {};
+	bool Cmp(shared_ptr<Plant> other);
+	
+#ifndef UNITTEST
 protected:
-	std::string name;
-	void OutPref(std::ofstream& outfile);
+#endif
+	string name ="";
+	int WIG = 0;
 	int AmountConsonant();
-	int WIG;
-	void OutSuffix(std::ofstream& outfile);
+	void OutPref(ofstream& outfile);
+	char MyTolower(char ch);
+	void OutSuffix(ofstream& outfile);
 };

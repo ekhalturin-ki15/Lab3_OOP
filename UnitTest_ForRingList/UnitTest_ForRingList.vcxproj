@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{296E8F4B-EF69-40D6-9E30-B2FB4B4BF8BE}</ProjectGuid>
+    <ProjectGuid>{5EEF1890-A5EC-4685-AC01-F76519F27114}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>UnitTestForProc</RootNamespace>
+    <RootNamespace>UnitTestForRingList</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectSubType>NativeUnitTestProject</ProjectSubType>
   </PropertyGroup>
@@ -94,7 +94,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;UNITTEST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -160,22 +160,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Lab3_Proc\Bush.cpp" />
-    <ClCompile Include="..\Lab3_Proc\Flower.cpp" />
-    <ClCompile Include="..\Lab3_Proc\Plant.cpp" />
-    <ClCompile Include="..\Lab3_Proc\Tree.cpp" />
-    <ClCompile Include="UnitTest_ForProc.cpp" />
+    <ClCompile Include="..\Lab3_OOP\Bush.cpp" />
+    <ClCompile Include="..\Lab3_OOP\Flower.cpp" />
+    <ClCompile Include="..\Lab3_OOP\Plant.cpp" />
+    <ClCompile Include="..\Lab3_OOP\Tree.cpp" />
+    <ClCompile Include="UnitTest_ForRingList.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Lab3_Proc\Bush.h" />
-    <ClInclude Include="..\Lab3_Proc\Flower.h" />
-    <ClInclude Include="..\Lab3_Proc\Plant.h" />
-    <ClInclude Include="..\Lab3_Proc\RingList.h" />
-    <ClInclude Include="..\Lab3_Proc\Tree.h" />
+    <ClInclude Include="..\Lab3_OOP\Bush.h" />
+    <ClInclude Include="..\Lab3_OOP\Flower.h" />
+    <ClInclude Include="..\Lab3_OOP\Plant.h" />
+    <ClInclude Include="..\Lab3_OOP\RingList.h" />
+    <ClInclude Include="..\Lab3_OOP\Tree.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Debug\input test.txt" />
-    <Text Include="..\Debug\output test.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,10 +10,9 @@ class Bush : public Plant
 {
 public:
 
-	void In(std::ifstream& infile);
+	void In(std::stringstream& stream);
 	void Out(std::ofstream& outfile);
 
 private:
-
-	int month;
+	int month = 0;
 };

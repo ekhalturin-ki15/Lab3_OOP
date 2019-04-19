@@ -4,12 +4,28 @@
 int Plant::AmountConsonant()
 {
 	int all = 0;
-	std::set<char> gl = { 'а', 'о', 'и', 'е', 'ё', 'э', 'ы', 'у', 'ю', 'я' };
+
+	std::vector<char> bad = { 'а', 'о', 'и', 'е', 'ё', 'э', 'ы', 'у', 'ю', 'я' , 'ъ', 'ь', 'ы' }; //Исправил
+	std::set<char> consonant;
+	for (char ch = 'а'; ch <= 'п'; ch++) consonant.insert(ch);
+	for (char ch = 'р'; ch <= 'я'; ch++) consonant.insert(ch);
+	for (auto it : bad) consonant.erase(it);
+
 	for (auto it : name)
-		if (!gl.count(tolower(it)))
+	{
+		if (consonant.count(MyTolower(it)))
 			all++;
+	}
 
 	return all;
+}
+
+char Plant::MyTolower(char ch)
+{
+	if ((ch >= 'А') && (ch <= 'П')) return ch - 'А' + 'а';
+	if ((ch >= 'Р') && (ch <= 'Я')) return ch - 'Р' + 'р';
+	if (ch == 'Ё') return 'ё';
+	return ch;
 }
 
 void Plant::OutPref(std::ofstream& outfile)
@@ -17,7 +33,7 @@ void Plant::OutPref(std::ofstream& outfile)
 	outfile << "Количество согласных =" << AmountConsonant() << " ; ";
 }
 
-bool Plant::Cmp(Plant* other)
+bool Plant::Cmp(shared_ptr<Plant> other)
 {
 	int l = this->AmountConsonant();
 	int r = other->AmountConsonant();

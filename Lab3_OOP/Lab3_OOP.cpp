@@ -3,9 +3,6 @@
 #include <string>
 #include "RingList.h"
 #include "Plant.h"
-#include "Tree.h"
-#include "Bush.h"
-
 const int STAND_AMOUNT = 3;
 
 int main(int amount, char* param[])
@@ -30,7 +27,7 @@ int main(int amount, char* param[])
 
 	std::cout << "Старт" << std::endl;
 
-	RingList<Plant*> container;
+	RingList<shared_ptr<Plant>> container;
 
 	container.In(infile);
 

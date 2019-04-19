@@ -7,10 +7,9 @@ void Flower::Out(std::ofstream& outfile)
 	outfile << "Это цветок, ";
 	OutPref(outfile);
 
-	if (-1 < type && type < watIsType.size())
+	if (1<=type && type <= watIsType.size())
 	{
 		outfile << "тип цветка - " << watIsType[type - 1];
-
 	}
 	else
 	{
@@ -26,8 +25,8 @@ void Flower::Out(std::ofstream& outfile)
 }
 
 
-void Flower::In(std::ifstream& infile)
+void Flower::In(std::stringstream& stream)
 {
 	std::string s;
-	infile >> this->type >> this->name >> this->WIG;
+	stream >> this->type >> this->name >> this->WIG;
 }

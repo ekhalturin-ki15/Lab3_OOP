@@ -5,7 +5,7 @@ void Bush::Out(std::ofstream& outfile)
 
 	outfile << "Это кустарник, ";
 	OutPref(outfile);
-	if (0 < month && month <= 12)
+	if (0 < month && month <= watIsMonth.size())
 	{
 		outfile << "месяц цветения - " << watIsMonth[month - 1];
 
@@ -24,8 +24,8 @@ void Bush::Out(std::ofstream& outfile)
 }
 
 
-void Bush::In(std::ifstream& infile)
+void Bush::In(std::stringstream& stream)
 {
 	std::string s;
-	infile >> this->month >> this->name >> this->WIG;
+	stream >> this->month >> this->name >> this->WIG;
 }
