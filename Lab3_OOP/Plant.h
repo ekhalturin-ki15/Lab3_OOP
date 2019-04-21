@@ -8,16 +8,14 @@ using namespace std;
 
 //Родительский класс наследования
 const vector<string> whereItGrows = { "тундре", "пустыни", "степи", "арктике" };
+const enum Type {tree, bush, flower};
 
-const int TREE = 1;
-const int BUSH = 2;
-const int FLOW = 3;
 
 class Plant
 {
 public:
 
-	virtual void In(stringstream& stream) = 0;
+	virtual bool In(stringstream& stream) = 0;
 	virtual void Out(ofstream& outfile) = 0;
 	virtual void OutFilter(ofstream& outfile) {};
 	bool Cmp(shared_ptr<Plant> other);
@@ -31,4 +29,5 @@ protected:
 	void OutPref(ofstream& outfile);
 	char MyTolower(char ch);
 	void OutSuffix(ofstream& outfile);
+	bool trueWIG(int W);
 };

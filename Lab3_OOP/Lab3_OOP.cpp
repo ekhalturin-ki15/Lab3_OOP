@@ -29,11 +29,13 @@ int main(int amount, char* param[])
 
 	RingList<shared_ptr<Plant>> container;
 
-	container.In(infile);
+	container.setInpOut(infile, outfile);
+
+	container.In();
 
 	std::cout << "Данные считаны с файла" << std::endl;
 
-	container.Out(outfile);
+	container.Out();
 
 	std::cout << "Данные выведенны в файл" << std::endl << "количество объектов: " << container.WatAmount() << std::endl;
 
@@ -41,16 +43,16 @@ int main(int amount, char* param[])
 
 	std::cout << "Отсортировали" << std::endl;
 	container.Sort();
-	container.Out(outfile);
+	container.Out();
 
 	std::cout << "Фильтрованный вывод" << std::endl;
 	outfile << "---------------------\n";
-	container.Out(outfile, true);
+	container.Out(true);
 
 	std::cout << "Контейнер очищен" << std::endl << "количество объектов: " << container.WatAmount() << std::endl;
 	
 	container.Clear();
-	container.Out(outfile);
+	container.Out();
 
 	std::cout << "Финиш" << std::endl;
 }

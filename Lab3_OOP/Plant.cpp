@@ -1,6 +1,15 @@
 #include "Plant.h"
 #include <set>
 
+
+bool Plant::trueWIG(int W)
+{
+	if ((1 > WIG) || (WIG > whereItGrows.size()))
+		return false;
+	return true;
+}
+
+
 int Plant::AmountConsonant()
 {
 	int all = 0;

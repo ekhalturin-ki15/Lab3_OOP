@@ -81,17 +81,17 @@ namespace TestRingList
 		}
 		TEST_METHOD(Test1)
 		{
-			containerP.In(in);
+			containerP.In();
 			Assert::AreEqual(string("Малина"), containerP.begin()->next->data->name);
 		}
 		TEST_METHOD(Test2)
 		{
-			containerP.In(in);
+			containerP.In();
 			Assert::AreEqual(1, containerP.begin()->prev->data->WIG);
 		}
 		TEST_METHOD(TestAmount)
 		{
-			containerP.In(in);
+			containerP.In();
 			Assert::AreEqual(3, containerP.WatAmount());
 		}
 	private:
@@ -110,13 +110,13 @@ namespace TestRingList
 			out << " 1  12 Дуб 1" << endl << "2  2 Малина  2" << endl << "3  10 Роза 1";
 			out.close();
 	
-			containerP.In(in);
+			containerP.In();
 			in.close();
 		}
 		TEST_METHOD(Test1)
 		{
 			out.open("input test.txt");
-			containerP.Out(out);
+			containerP.Out();
 			out.close();
 			in.open("input test.txt");
 			getline(in, line);
@@ -126,7 +126,7 @@ namespace TestRingList
 		TEST_METHOD(Test2)
 		{
 			out.open("input test.txt");
-			containerP.Out(out);
+			containerP.Out();
 			out.close();
 			in.open("input test.txt");
 			for (int i = 0;i<2;i++) getline(in, line);
@@ -136,7 +136,7 @@ namespace TestRingList
 		TEST_METHOD(Test3)
 		{
 			out.open("input test.txt");
-			containerP.Out(out);
+			containerP.Out();
 			out.close();
 			in.open("input test.txt");
 			for (int i = 0; i < 3; i++) getline(in, line);
@@ -160,7 +160,7 @@ namespace TestRingList
 			out << " 1  12 Дуб 1" << endl << "2  2 Малина  2" << endl << "3  10 Роза 1";
 			out.close();
 
-			containerP.In(in);
+			containerP.In();
 			in.close();
 		}
 		TEST_METHOD(Test1)
@@ -189,7 +189,7 @@ namespace TestRingList
 			out << " 2 -12 what 1" << endl << " 3  -12 П 1" << endl << "1  -2 ПП  2" << endl << "1  -10 ППП 1";
 			out.close();
 
-			containerP.In(in);
+			containerP.In();
 			in.close();
 		}
 		TEST_METHOD(Test1)

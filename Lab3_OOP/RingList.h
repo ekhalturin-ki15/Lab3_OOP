@@ -24,6 +24,7 @@ class RingList
 public:
 
 	RingList();
+	~RingList();
 
 	// Положить в конец
 	void PushBack(DataRL flower);
@@ -33,9 +34,11 @@ public:
 	////Удалить (теперь не настолько выжно, используем умные указатели)
 	void Clear();
 
-	void In(std::ifstream& infile);
+	void setInpOut(ifstream& in, ofstream& out);
 
-	void Out(std::ofstream& outfile, bool filter = false);
+	void In();
+
+	void Out(bool filter = false);
 
 	int WatAmount();
 
@@ -46,18 +49,30 @@ public:
 private:
 #endif
 
+	bool getPlant(string line);
+	int whatLine;
 	shared_ptr<ElementRL<DataRL>> start;
 	int amountEl;
 	void QSort(vector<shared_ptr<ElementRL<DataRL>>>& mass, int l, int r);
 
+	ofstream outfile;
+	ifstream infile;
 };
 
 
 
 //При использовании шаблонов, реализацию нельзя разделять, так как она требуется на этапе компановки
+template <typename  DataRL>
+void RingList<DataRL>::setInpOut(ifstream& in, ofstream& out)
+{
+	infile = move(in);
+	outfile = move(out);
+}
+
+
 
 template <typename  DataRL>
-void RingList<DataRL>::Out(std::ofstream& outfile, bool filter)
+void RingList<DataRL>::Out(bool filter)
 {
 	shared_ptr<ElementRL<DataRL>> it = this->begin();
 	for (int i = 0; i < this->amountEl; i++)
@@ -71,47 +86,71 @@ void RingList<DataRL>::Out(std::ofstream& outfile, bool filter)
 }
 
 template <typename  DataRL>
-void RingList<DataRL>::In(std::ifstream& infile)
+void RingList<DataRL>::In()
 {
-	int type;
 	string line;
-	stringstream stream;
-	
+	whatLine = 0;
 	while (getline(infile, line))
 	{
-		stream.clear();
-		stream.str(line);
-		stream >> type;
-		shared_ptr<Plant> object;
-		//Plant* object = 0;
+		whatLine++;
+		enum Type {tree, bush, flower};
+		getPlant(line);
+	}
+	outfile << "_________________________________\n";
+}
 
-		if (type == TREE)
+template <typename  DataRL>
+bool RingList<DataRL>::getPlant(string line)
+{
+	stringstream stream;
+	int type;
+	shared_ptr<Plant> object;
+	stream.str(line);
+	try
+	{
+		stream >> type;	
+		switch (type - 1)
 		{
+		case (Type::tree):
 			object = make_shared<Tree>();
-			//object = new Tree;
-		}
-
-		if (type == BUSH)
-		{
+			break;
+		case (Type::bush):
 			object = make_shared<Bush>();
-			//object = new Bush;
-		}
-
-		if (type == FLOW)
-		{
+			break;
+		case (Type::flower):
 			object = make_shared<Flower>();
-			//object = new Flower;
+			break;
+		default:
+			throw (string("Неизвестный тип класса - " + to_string(type)));
 		}
-		object->In(stream);
+		if (!object->In(stream))
+			throw (string("Неккоректный ввод параметров класса"));
+	
 		this->PushBack(object);
 	}
+	catch (string wrong)
+	{
+		outfile << wrong << " : в строке номер " + to_string(whatLine) << endl;
+		return false;
+	}
+	this->PushBack(object);
+	return true;
 }
+
 
 template <typename  DataRL>
 RingList<DataRL>::RingList()
 {
+	whatLine = 0;
 	amountEl = 0;
 	start = 0;
+}
+
+template <typename  DataRL>
+RingList<DataRL>::~RingList()
+{
+	outfile.close();
+	infile.close();
 }
 
 template <typename  DataRL>

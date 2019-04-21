@@ -10,7 +10,7 @@ class Bush : public Plant
 {
 public:
 
-	void In(std::stringstream& stream);
+	bool In(std::stringstream& stream);
 	void Out(std::ofstream& outfile);
 
 private:
