@@ -29,3 +29,16 @@ void Bush::In(std::stringstream& stream)
 	std::string s;
 	stream >> this->month >> this->name >> this->WIG;
 }
+
+void Bush::MultiMethod(ofstream& outfile, shared_ptr<Plant> other)
+{
+	other->OutWithBush(outfile);
+}
+void Bush::OutWithTree(ofstream& outfile)
+{
+	outfile << "Куст с деревом: ";
+}
+void Bush::OutWithBush(ofstream& outfile)
+{
+	outfile << "Куст с кустом: ";
+}

@@ -4,14 +4,14 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <memory>
 using namespace std;
 
 //Родительский класс наследования
 const vector<string> whereItGrows = { "тундре", "пустыни", "степи", "арктике" };
 
-const int TREE = 1;
-const int BUSH = 2;
-const int FLOW = 3;
+
+enum WPlant {tree, bush};
 
 class Plant
 {
@@ -21,6 +21,10 @@ public:
 	virtual void Out(ofstream& outfile) = 0;
 	virtual void OutFilter(ofstream& outfile) {};
 	bool Cmp(shared_ptr<Plant> other);
+
+	virtual void MultiMethod(ofstream& outfile, shared_ptr<Plant> other) = 0;
+	virtual void OutWithTree(ofstream& outfile) = 0;
+	virtual void OutWithBush(ofstream& outfile) = 0;
 	
 #ifndef UNITTEST
 protected:

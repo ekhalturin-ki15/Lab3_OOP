@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include "RingList.h"
-#include "Plant.h"
+
 const int STAND_AMOUNT = 3;
 
 int main(int amount, char* param[])
@@ -33,19 +33,12 @@ int main(int amount, char* param[])
 
 	std::cout << "Данные считаны с файла" << std::endl;
 
-	container.Out(outfile);
+	container.MultiOut(outfile);
 
 	std::cout << "Данные выведенны в файл" << std::endl << "количество объектов: " << container.WatAmount() << std::endl;
 
-	outfile << "---------------" << std::endl;
-
-	std::cout << "Отсортировали" << std::endl;
-	container.Sort();
-	container.Out(outfile);
-
-	std::cout << "Фильтрованный вывод" << std::endl;
+	
 	outfile << "---------------------\n";
-	container.Out(outfile, true);
 
 	std::cout << "Контейнер очищен" << std::endl << "количество объектов: " << container.WatAmount() << std::endl;
 	

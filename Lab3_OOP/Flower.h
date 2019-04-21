@@ -12,6 +12,10 @@ public:
 	void In(std::stringstream& stream);
 	void Out(std::ofstream& outfile);
 
+	void MultiMethod(ofstream& outfile, shared_ptr<Plant> other);
+	void OutWithTree(ofstream& outfile);
+	void OutWithBush(ofstream& outfile);
+
 private:
 	int type = 0;
 };

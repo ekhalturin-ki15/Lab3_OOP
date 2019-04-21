@@ -37,6 +37,8 @@ public:
 
 	void Out(std::ofstream& outfile, bool filter = false);
 
+	void MultiOut(std::ofstream& outfile);
+
 	int WatAmount();
 
 	//Опять не по канонам std, ну да ладно, стерплю
@@ -71,6 +73,27 @@ void RingList<DataRL>::Out(std::ofstream& outfile, bool filter)
 }
 
 template <typename  DataRL>
+void RingList<DataRL>::MultiOut(std::ofstream& outfile)
+{
+	shared_ptr<ElementRL<DataRL>> it = this->begin();
+	shared_ptr<ElementRL<DataRL>> et;
+	et = it->next;
+	for (int i = 0; i < this->amountEl; i++)
+	{
+		for (int j = i+1; j < this->amountEl; j++)
+		{
+			et->data->MultiMethod(outfile, it->data);
+			outfile << std::endl;
+			it->data->Out(outfile);
+			et->data->Out(outfile);
+			outfile << std::endl;
+			et = et->next;
+		}
+		it = it->next;
+	}
+}
+
+template <typename  DataRL>
 void RingList<DataRL>::In(std::ifstream& infile)
 {
 	int type;
@@ -84,23 +107,16 @@ void RingList<DataRL>::In(std::ifstream& infile)
 		stream >> type;
 		shared_ptr<Plant> object;
 		//Plant* object = 0;
-
-		if (type == TREE)
+		switch (type-1)
 		{
-			object = make_shared<Tree>();
-			//object = new Tree;
-		}
-
-		if (type == BUSH)
-		{
-			object = make_shared<Bush>();
-			//object = new Bush;
-		}
-
-		if (type == FLOW)
-		{
-			object = make_shared<Flower>();
-			//object = new Flower;
+		case(WPlant::tree):
+		
+				object = make_shared<Tree>();
+				break;
+		case(WPlant::bush):
+	
+				object = make_shared<Bush>();
+				break;
 		}
 		object->In(stream);
 		this->PushBack(object);
