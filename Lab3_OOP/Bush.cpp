@@ -42,3 +42,7 @@ void Bush::OutWithBush(ofstream& outfile)
 {
 	outfile << "Куст с кустом: ";
 }
+void Bush::OutWithFlower(ofstream& outfile)
+{
+	outfile << "Куст с цветком: ";
+}

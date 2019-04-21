@@ -77,9 +77,9 @@ void RingList<DataRL>::MultiOut(std::ofstream& outfile)
 {
 	shared_ptr<ElementRL<DataRL>> it = this->begin();
 	shared_ptr<ElementRL<DataRL>> et;
-	et = it->next;
 	for (int i = 0; i < this->amountEl; i++)
 	{
+		et = it->next;
 		for (int j = i+1; j < this->amountEl; j++)
 		{
 			et->data->MultiMethod(outfile, it->data);
@@ -117,6 +117,11 @@ void RingList<DataRL>::In(std::ifstream& infile)
 	
 				object = make_shared<Bush>();
 				break;
+
+		case(WPlant::flower):
+
+			object = make_shared<Flower>();
+			break;
 		}
 		object->In(stream);
 		this->PushBack(object);

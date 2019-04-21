@@ -15,6 +15,7 @@ public:
 	void MultiMethod(ofstream& outfile, shared_ptr<Plant> other);
 	void OutWithTree(ofstream& outfile);
 	void OutWithBush(ofstream& outfile);
+	void OutWithFlower(ofstream& outfile);
 
 private:
 	int type = 0;

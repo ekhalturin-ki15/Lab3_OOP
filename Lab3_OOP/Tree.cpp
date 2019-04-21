@@ -42,3 +42,8 @@ void Tree::OutWithBush(ofstream& outfile)
 {
 	outfile << "Дерево с кустом: ";
 }
+
+void Tree::OutWithFlower(ofstream& outfile)
+{
+	outfile << "Дерево с цветком: ";
+}

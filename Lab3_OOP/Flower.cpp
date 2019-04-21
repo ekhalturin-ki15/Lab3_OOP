@@ -34,13 +34,18 @@ void Flower::In(std::stringstream& stream)
 
 void Flower::MultiMethod(ofstream& outfile, shared_ptr<Plant> other)
 {
-	other->OutWithBush(outfile);
+	other->OutWithFlower(outfile);
 }
 void Flower::OutWithTree(ofstream& outfile)
 {
-	outfile << "Куст с деревом: ";
+	outfile << "Цветок с деревом: ";
 }
 void Flower::OutWithBush(ofstream& outfile)
 {
-	outfile << "Куст с кустом: ";
+	outfile << "Цветок с кустом: ";
+}
+
+void Flower::OutWithFlower(ofstream& outfile)
+{
+	outfile << "Цветок с цветком: ";
 }

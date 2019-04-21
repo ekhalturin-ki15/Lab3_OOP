@@ -11,7 +11,7 @@ using namespace std;
 const vector<string> whereItGrows = { "тундре", "пустыни", "степи", "арктике" };
 
 
-enum WPlant {tree, bush};
+enum WPlant {tree, bush, flower};
 
 class Plant
 {
@@ -25,6 +25,7 @@ public:
 	virtual void MultiMethod(ofstream& outfile, shared_ptr<Plant> other) = 0;
 	virtual void OutWithTree(ofstream& outfile) = 0;
 	virtual void OutWithBush(ofstream& outfile) = 0;
+	virtual void OutWithFlower(ofstream& outfile) = 0;
 	
 #ifndef UNITTEST
 protected:
