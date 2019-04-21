@@ -34,7 +34,7 @@ public:
 	////Удалить (теперь не настолько выжно, используем умные указатели)
 	void Clear();
 
-	void setInpOut(ifstream& in, ofstream& out);
+	bool setInpOut(ifstream& in, ofstream& out);
 
 	void In();
 
@@ -63,10 +63,14 @@ private:
 
 //При использовании шаблонов, реализацию нельзя разделять, так как она требуется на этапе компановки
 template <typename  DataRL>
-void RingList<DataRL>::setInpOut(ifstream& in, ofstream& out)
+bool RingList<DataRL>::setInpOut(ifstream& in, ofstream& out)
 {
+	if (infile.is_open()) infile.close();
+	if (outfile.is_open()) outfile.close();
 	infile = move(in);
 	outfile = move(out);
+	if ((!infile.is_open()) || (!outfile.is_open())) return false;
+	return true;
 }
 
 
@@ -83,6 +87,7 @@ void RingList<DataRL>::Out(bool filter)
 			it->data->Out(outfile);
 		it = it->next;
 	}
+	outfile << "---------------------\n";
 }
 
 template <typename  DataRL>
